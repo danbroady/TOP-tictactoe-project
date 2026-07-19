@@ -8,7 +8,7 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
+article, aside, button, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
@@ -21,14 +21,14 @@ time, mark, audio, video {
 }
 
 /* HEX codes
-#194F82
-#56ACE0
-#FFC10D
-#FFFFFF */
+#194F82 - dark blue
+#56ACE0 - light blue
+#FFC10D - yellow
+#FFFFFF - white */
 
 /* Main styling */
 * {
-    outline: solid 2px red
+    /* outline: solid 2px red; */
 }
 
 body {
@@ -37,11 +37,101 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     height: 100vh;
+    width: 100vw;
+    margin: 0, auto;
+    font-size: 32px;
+    color: white;
+    background-color: #194F82;
+}
+
+header {
+    padding: 0px 0;
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #56ACE0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    padding: 20px;
+    gap: 50px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    gap: 15px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.game-cell {
+    color: black;
+    background-color: white;
+    text-align: center;
+    height: 110px;
+    width: 110px;
+    line-height: 110px;
+    border-radius: 15px;
+}
+
+#X, #O {
+    background-size: 80px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#X {
+    background-color: #FFC10D;
+    background-image: url("./images/cross.svg");
+    
+}
+#O {
+    background-color: #56ACE0;
+    background-image: url("./images/nought.svg");
 }
 
 footer {
+    /* margin-top: auto; */
+    padding: 10px;
+    font-size: 26px;
+    font-weight: 500;
+    width: 100vw;
+    background-color: #56ACE0;
+    text-align: center;
 }
 
 
 
+/* Other styling */
+a {
+    text-decoration: none;
+    color: #FFC10D;
+}
+
+h1 {
+    font-size: 58px;
+    font-weight: 500;
+}
+
+h2 {
+    font-weight: 600;
+    text-align: center;
+    color: #FFC10D;
+}
+
+button {
+    padding: 10px;
+    width: 180px;
+    font-weight: 500;
+    align-self: center;
+    color: white;
+    background-color: #56ACE0;
+    border-radius: 8px;
+    text-align: center;
+}
