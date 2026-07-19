@@ -94,19 +94,42 @@ const displayController = (function() {
 
 
     // Query selectors
-
-
-
-
-    // Render JS state to HTML
-
-
+    const instruction = document.querySelector("h2");
+    const game_cell = document.querySelector(".game-cell");
+    const btn_restart = document.querySelector("button");
 
     // Event listeners
+    game_cell.addEventListener("click", (e) => {e.target.setAttribute("id", "X")});
+    btn_restart.addEventListener("click", () => {game.resetLogic(); gameboard.resetBoard()});
+
+    game_cell.forEach((cell, index) => {
+        cell.addEventListener("click", () => {
+            game.play(index);
+            render();
+        });
+    });
+
+    // Render JS state to HTML
+    const render = () => {
+        const board = gameboard.getBoard();
+        game_cell.forEach((cell, index) => {
+            if (board[index] === "X") {
+                cell.setAttribute("id", "X");
+            } else if (board[index] === "O") {
+                cell.setAttribute("id", "O");
+            };
+        });
+        if (game.isGameOver()) {
+            instruction.textContent = `${game.getCurrentPlayer().name} wins!`;
+        } else if (game.isGameDraw()) {
+            instruction.textContent = `It's a tie!`;
+        } else {
+            instruction.textContent = `Your turn: ${game.getCurrentPlayer().name}`;
+        };
+    };
 
 
-    // Form
-
+    
 
 
 
