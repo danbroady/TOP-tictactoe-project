@@ -92,31 +92,21 @@ const game = (function(){
 // Display controller IIFE
 const displayController = (function() {
 
-
     // Query selectors
     const instruction = document.querySelector("h2");
-    const game_cell = document.querySelector(".game-cell");
+    const game_cells = document.querySelectorAll(".game-cell");
     const btn_restart = document.querySelector("button");
 
-    // Event listeners
-    game_cell.addEventListener("click", (e) => {e.target.setAttribute("id", "X")});
-    btn_restart.addEventListener("click", () => {game.resetLogic(); gameboard.resetBoard()});
-
-    game_cell.forEach((cell, index) => {
-        cell.addEventListener("click", () => {
-            game.play(index);
-            render();
-        });
-    });
-
     // Render JS state to HTML
-    const render = () => {
+    const render = () => { 
         const board = gameboard.getBoard();
-        game_cell.forEach((cell, index) => {
+        game_cells.forEach((cell, index) => {
             if (board[index] === "X") {
                 cell.setAttribute("id", "X");
             } else if (board[index] === "O") {
                 cell.setAttribute("id", "O");
+            } else {
+                cell.removeAttribute("id");
             };
         });
         if (game.isGameOver()) {
@@ -128,9 +118,20 @@ const displayController = (function() {
         };
     };
 
+    // Event listeners
+    game_cells.forEach((cell, index) => {
+        cell.addEventListener("click", () => {
+            game.play(index);
+            render();
+        });
+    });
 
-    
+    btn_restart.addEventListener("click", () => {
+        game.resetLogic();
+        gameboard.resetBoard();
+        render();
+    });
 
-
+    render();
 
 })();
